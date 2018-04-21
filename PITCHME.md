@@ -59,9 +59,15 @@ Using it with existing templates requires less knowledge of AWS resource details
 
 ### Where did it help me
 
-My datacenter is a yaml file
+My datacenter (ECS cluster, ALB, RDS, applications) is a yaml file
 
 Create an entire environment with a single command, again and again
+
+Don't pay for idle, delete an environment when you are not using it
+
++++
+
+Easily create dev, qa, CICD and production environments
 
 +++
 
@@ -73,15 +79,12 @@ Ease of environment creation facilitates things like automated regression testin
 
 +++
 
-Creating CloudWatch dashboards when creating/deploying a service to the cluster as a part of the service template
-
-Developers should include a monitoring dashboard along with their service
-
+Added autoscaling group policy and CloudWatch metric with alarm on high cluster memory reservation to invoke it
 
 ---
 ### Nested Stacks
 
-Don't make one giant template
+master, VPC, security groups, ALB, ECS instances
 
 Group related/hierarchical resources into templates
 
@@ -91,7 +94,16 @@ Templates can invoke/reference other templates
 
 Create an ECS cluster
 
-[github.com/awslabs/ecs-refarch-cloudformation](github.com/awslabs/ecs-refarch-cloudformation)
+[github.com/awslabs/ecs-refarch-cloudformation][github.com/awslabs/ecs-refarch-cloudformation]
+
++++
+
+Examples of stacks that provide a complete system
+
+* base cluster
+* resources such as RDS
+* application services
+* SNS items
 
 ---
 
@@ -111,7 +123,7 @@ Sometimes a stack delete will fail (race condition for example), you might need 
 
 Don't hardcode stuff in your templates
 
-* use the Parameter Store to centralize settings
+* use the SSM Parameter Store to centralize settings
 * pass parameters between templates
 
 +++
@@ -145,11 +157,15 @@ Stacks can take a while to complete, particularly if there are numerous dependen
 +++
 
 Note that the Parameter Store is rate limited, be careful about having CloudFormation do a lot of put values without some rate governing
----
 
-### Demo
++++
 
-(desktop video goes here)
+Organize CloudWatch log groups by log message format, then forward desired group(s) to your ElasticSearch cluster
+
++++
+
+Instead of using the AWS cli to create stacks use Step Functions and Lambda right from the start, this lets creates/deletes run serverless and asynchronous (no blocked foreground shell)
+
 ---
 
 ## Links
