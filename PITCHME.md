@@ -106,15 +106,39 @@ application stacks can be created and deleted independently
 
 +++
 
+Stack layers being created
+
 ![complete stack](assets/aws-stacks-in-progress-01.png)
 
 +++
+
+Where this stack is in the resource creation process
+
 ![complete stack](assets/aws-events-01.png)
 
 +++
 
+A stack can provide consumable outputs
+
+![complete stack](assets/aws-outputs-01.png)
+
++++
+
+What resoureces this stack created
+
+![complete stack](assets/aws-resources-01.png)
+
++++
+
+Good example of reusable stack layers
+
 ![complete stack](assets/aws-stacks-01.png)
 
++++
+
+Don't forget necessary roles for automation tools
+
+![complete stack](assets/aws-role-01.png)
 
 +++
 
@@ -131,7 +155,11 @@ Examples of stacks that provide a complete system
 
 Move quickly from manual creation to automation
 
-Don't get in the habit of creating things using the admin console, it is difficult to recreate exactly, document and support things created using the admin console
+Don't get in the habit of creating things using the admin console or even the cli without scripting it, it is difficult to recreate exactly, document and support things created using the admin console
+
++++
+
+Script in Lambda which makes moving to Step easier than if you use /bin/sh
 
 +++
 
