@@ -6,7 +6,7 @@ AWS DC Meetup
 
 dougtoppin@gmail.com
 
-[github.com/dougtoppin/presentation-aws-cloudformation-ecs](github.com/dougtoppin/presentation-aws-cloudformation-ecs.git)
+![github.com/dougtoppin/presentation-aws-cloudformation-ecs](github.com/dougtoppin/presentation-aws-cloudformation-ecs.git)
 
 ---
 
@@ -92,7 +92,7 @@ Templates can invoke/reference other templates
 
 Create an ECS cluster
 
-[github.com/awslabs/ecs-refarch-cloudformation](github.com/awslabs/ecs-refarch-cloudformation)
+![github.com/awslabs/ecs-refarch-cloudformation](github.com/awslabs/ecs-refarch-cloudformation)
 
 +++
 
@@ -226,7 +226,8 @@ Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
 
 ## Links
 
-- [aws.amazon.com/cloudformation/](aws.amazon.com/cloudformation)
-- [docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation](docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation)
-- [docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html](docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-- [cloudonaut.io/optional-parameter-in-cloudformation/](cloudonaut.io/optional-parameter-in-cloudformation)
+- ![github.com/awslabs/ecs-refarch-cloudformation](github.com/awslabs/ecs-refarch-cloudformation)
+- ![aws.amazon.com/cloudformation/](aws.amazon.com/cloudformation)
+- ![docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation](docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation)
+- ![docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html](docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+- ![cloudonaut.io/optional-parameter-in-cloudformation/](cloudonaut.io/optional-parameter-in-cloudformation)
