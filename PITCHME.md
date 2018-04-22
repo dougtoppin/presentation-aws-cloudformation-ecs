@@ -67,7 +67,7 @@ Don't pay for idle, delete an environment when you are not using it
 
 +++
 
-Easily create dev, qa, CICD and production environments
+Easily create dev, qa, CICD and production environments in parallel using the same templates
 
 +++
 
@@ -84,8 +84,6 @@ Added autoscaling group policy and CloudWatch metric with alarm on high cluster 
 ---
 ### Nested Stacks
 
-master, VPC, security groups, ALB, ECS instances
-
 Group related/hierarchical resources into templates
 
 Templates can invoke/reference other templates
@@ -94,7 +92,29 @@ Templates can invoke/reference other templates
 
 Create an ECS cluster
 
-[github.com/awslabs/ecs-refarch-cloudformation][github.com/awslabs/ecs-refarch-cloudformation]
+[github.com/awslabs/ecs-refarch-cloudformation](github.com/awslabs/ecs-refarch-cloudformation)
+
++++
+
+Excellent example of nested stacks and application stacks
+
+master, VPC, security groups, ALB, ECS instances, products service, website service
+
++++
+
+application stacks can be created and deleted independently
+
++++
+
+![complete stack](assets/aws-stacks-in-progress-01.png)
+
++++
+![complete stack](assets/aws-events-01.png)
+
++++
+
+![complete stack](assets/aws-stacks-01.png)
+
 
 +++
 
@@ -165,6 +185,14 @@ Organize CloudWatch log groups by log message format, then forward desired group
 +++
 
 Instead of using the AWS cli to create stacks use Step Functions and Lambda right from the start, this lets creates/deletes run serverless and asynchronous (no blocked foreground shell)
+
++++
+
+Instead of deleting and recreating an application stack you might be able to just force a redeploy a container which will pull a new image which saves time when testing
+
++++
+
+Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
 
 ---
 
