@@ -6,7 +6,7 @@ AWS DC Meetup
 
 dougtoppin@gmail.com
 
-![github.com/dougtoppin/presentation-aws-cloudformation-ecs](github.com/dougtoppin/presentation-aws-cloudformation-ecs.git)
+[github.com/dougtoppin/presentation-aws-cloudformation-ecs](https://github.com/dougtoppin/presentation-aws-cloudformation-ecs)
 
 ---
 
