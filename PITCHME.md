@@ -124,7 +124,7 @@ A stack can provide consumable outputs
 
 +++
 
-What resoureces this stack created
+What resources this stack created
 
 ![complete stack](assets/aws-resources-01.png)
 
@@ -216,7 +216,7 @@ Instead of using the AWS cli to create stacks use Step Functions and Lambda righ
 
 +++
 
-Instead of deleting and recreating an application stack you might be able to just force a redeploy a container which will pull a new image which saves time when testing
+Instead of deleting and recreating an application stack you might be able to just force a redeploy of a container which will pull a new image which saves time when testing
 
 +++
 
