@@ -94,15 +94,13 @@ Create an ECS cluster
 
 [github.com/awslabs/ecs-refarch-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)
 
-+++
-
 Excellent example of nested stacks and application stacks
 
 master, VPC, security groups, ALB, ECS instances, products service, website service
 
 +++
 
-application stacks can be created and deleted independently
+Application stacks can be created and deleted independently
 
 +++
 
@@ -218,9 +216,29 @@ Instead of using the AWS cli to create stacks use Step Functions and Lambda righ
 
 Instead of deleting and recreating an application stack you might be able to just force a redeploy of a container which will pull a new image which saves time when testing
 
+```
+aws ecs update-service --cluster xxx --service yyy --force-new-deployment
+```
+
 +++
 
 Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
+
++++
+
+Note that account limits might cause a create to fail
+
++++
+
+Plan your IAM roles/policies so that Lambda automation does not have free reign
+
++++
+
+Use ```aws cloudformation validate-template``` and ```cfn_nag``` before you start a long stack creation that might fail at a late stage
+
++++
+
+Disable rollback on stack creates when you need to debug stack issues
 
 ---
 
@@ -231,3 +249,4 @@ Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
 - [docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation](docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html#cli-aws-cloudformation)
 - [docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html](docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 - [cloudonaut.io/optional-parameter-in-cloudformation/](cloudonaut.io/optional-parameter-in-cloudformation)
+- [github.com/stelligent/cfn_nag](https://github.com/stelligent/cfn_nag)
