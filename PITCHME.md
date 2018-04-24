@@ -240,6 +240,14 @@ Use ```aws cloudformation validate-template``` and ```cfn_nag``` before you star
 
 Disable rollback on stack creates when you need to debug stack issues
 
++++
+
+Note that the AMI to launch is configured in ecs-cluster.yaml, you might want to keep this updated or even better invoke a Lambda function to populate it in real-time during stack creation
+
++++
+
+Make your instance types a parameter and potentially set them differently between dev, test, prod environments
+
 ---
 
 ## Links
