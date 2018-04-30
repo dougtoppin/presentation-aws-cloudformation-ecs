@@ -16,6 +16,7 @@ dougtoppin@gmail.com
 - Why use it
 - Where did it help me
 - Nested stacks
+- ECS cluster
 - Examples
 - Lessons learned
 - Links
@@ -60,11 +61,9 @@ Using it with existing templates requires less knowledge of AWS resource details
 
 ### Where did it help me
 
-My datacenter (ECS cluster, ALB, RDS, applications) is a yaml file
-
-Create an entire environment with a single command, again and again
-
-Don't pay for idle, delete an environment when you are not using it
+* My datacenter (ECS cluster, ALB, RDS, applications) is a yaml file
+* Create an entire environment with a single command, again and again
+* Don't pay for idle, delete an environment when you are not using it
 
 +++
 
@@ -78,26 +77,28 @@ Namespace based environment (stack names) means that multiple environments can c
 
 Ease of environment creation facilitates things like automated regression testing such as a Jenkins pipeline I&T stage that spins up everything and then deletes it
 
-+++
-
-Added autoscaling group policy and CloudWatch metric with alarm on high cluster memory reservation to invoke it
-
 ---
 ### Nested Stacks
 
-Group related/hierarchical resources into templates
-
-Templates can invoke/reference other templates
+* Group related/hierarchical resources into templates
+* Templates can invoke/reference other templates
 
 ---
 
-Create an ECS cluster
+### ECS cluster
 
 [github.com/awslabs/ecs-refarch-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)
 
-Excellent example of nested stacks and application stacks
+* Excellent example of nested stacks and application stacks
+* master, VPC, security groups, ALB, ECS instances, products service, website service
 
-master, VPC, security groups, ALB, ECS instances, products service, website service
++++
+
+ECS template set great starting point to build upon
+
+* autoscaling group policy and CloudWatch metric with alarm on high cluster memory reservation to invoke it
+* RDS stacks
+* application stacks
 
 +++
 
@@ -227,7 +228,7 @@ Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
 
 +++
 
-Note that account limits might cause a create to fail
+Note that account limits might cause a create to fail, monitor your limits usage and settings
 
 +++
 
