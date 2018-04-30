@@ -29,7 +29,7 @@ dougtoppin@gmail.com
 ---
 ### Why use CloudFormation
 
-Staying within the AWS ecosystem has advantages
+* Staying within the AWS ecosystem has advantages
 
 * IAM
 * logging
@@ -39,7 +39,7 @@ Staying within the AWS ecosystem has advantages
 
 +++
 
-No other tools to learn, install, configure, support and pay for
+* No other tools to learn, install, configure, support and pay for
 
 +++
 
@@ -94,7 +94,7 @@ Ease of environment creation facilitates things like automated regression testin
 
 +++
 
-ECS template set great starting point to build upon
+ECS template set great starting point to build upon such as
 
 * autoscaling group policy and CloudWatch metric with alarm on high cluster memory reservation to invoke it
 * RDS stacks
@@ -153,70 +153,66 @@ Examples of stacks that provide a complete system
 
 ### Lessons learned
 
-Move quickly from manual creation to automation
-
-Don't get in the habit of creating things using the admin console or even the cli without scripting it, it is difficult to recreate exactly, document and support things created using the admin console
-
-+++
-
-Script in Lambda which makes moving to Step Functions easier than if you use /bin/sh
+* Move quickly from manual creation to automation
+* Don't get in the habit of creating things using the admin console or even the cli without scripting it, it is difficult to recreate exactly, document and support things created using the admin console
 
 +++
 
-deleting stacks
-
-Sometimes a stack delete will fail (race condition for example), you might need to try it again or do a manual delete of a resource, do not assume that a stack delete will work every time without confirming
+* Script in Lambda which makes moving to Step Functions easier than if you use /bin/sh
 
 +++
 
-Don't hardcode stuff in your templates
+* Sometimes a stack delete will fail (race condition for example), you might need to try it again or do a manual delete of a resource, do not assume that a stack delete will work every time without confirming
 
++++
+
+* Don't hardcode stuff in your templates
 * use the SSM Parameter Store to centralize settings
 * pass parameters between templates
 
 +++
 
-Use `wait` if you need to ensure that resource creation/deletion is orchestrated before continuing to the next action
+* Use `wait` if you need to ensure that resource creation/deletion is orchestrated before continuing to the next action
 
 +++
 
-When creating resources with names/keys concatenate the environment name to prevent conflicts if there is any chance that multiple instances of a stack might exist
+* When creating resources with names/keys concatenate the environment name to prevent conflicts if there is any chance that multiple instances of a stack might exist
 
 +++
 
-CloudFormation does not support SecureStrings in the Parameter Store but it is in the AWS queue to get working someday
+* CloudFormation does not support SecureStrings in the Parameter Store but it is in the AWS queue to get working someday
 
 +++
 
-Start with an existing set of templates rather than create your own from scratch
+* Start with an existing set of templates rather than create your own from scratch
 
 +++
 
-stack-updates seem to take a while vs delete/create cycles
+* stack-updates seem to take a while vs delete/create cycles
 
 +++
 
-To prevent race conditions between stacks use Ouputs/export and ImportValue, this will cause a dependency/wait to occur. This also helps in creating a stack that needs something to exist but the "base" stack was never created.
+* To prevent race conditions between stacks use Ouputs/export and ImportValue, this will cause a dependency/wait to occur. This also helps in creating a stack that needs something to exist but the "base" stack was never created.
 
 +++
 
-Stacks can take a while to complete, particularly if there are numerous dependencies, use `wait` to allow creations to occur in parallel and save time
+* Stacks can take a while to complete, particularly if there are numerous dependencies, use `wait` to allow creations to occur in parallel and save time
 
 +++
 
-Note that the Parameter Store is rate limited, be careful about having CloudFormation do a lot of put values without some rate governing
+* Note that the Parameter Store is rate limited, be careful about having CloudFormation do a lot of put values without some rate governing
 
 +++
 
-Organize CloudWatch log groups by log message format, then forward desired group(s) to your ElasticSearch cluster
+* Organize CloudWatch log groups by log message format, then forward desired group(s) to your ElasticSearch cluster
 
 +++
 
-Instead of using the AWS cli to create stacks use Step Functions and Lambda right from the start, this lets creates/deletes run serverless and asynchronous (no blocked foreground shell)
+* Instead of using the AWS cli to create stacks use Step Functions and Lambda right from the start, this lets creates/deletes run serverless and asynchronous (no blocked foreground shell)
 
 +++
 
-Instead of deleting and recreating an application stack you might be able to just force a redeploy of a container which will pull a new image which saves time when testing
+* Instead of deleting and recreating an application stack you might be able to just force a redeploy of a container which will pull a new image which saves time when testing
 
 ```
 aws ecs update-service --cluster xxx --service yyy --force-new-deployment
@@ -224,15 +220,15 @@ aws ecs update-service --cluster xxx --service yyy --force-new-deployment
 
 +++
 
-Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
+* Use Jenkins jobs to automate basic functions by invoking CloudFormation commands
 
 +++
 
-Note that account limits might cause a create to fail, monitor your limits usage and settings
+* Note that account limits might cause a create to fail, monitor your limits usage and settings
 
 +++
 
-Plan your IAM roles/policies so that Lambda automation does not have free reign
+* Plan your IAM roles/policies so that Lambda automation does not have free reign, this is harder than it sounds
 
 +++
 
@@ -240,15 +236,15 @@ Use ```aws cloudformation validate-template``` and ```cfn_nag``` before you star
 
 +++
 
-Disable rollback on stack creates when you need to debug stack issues
+* Disable rollback on stack creates when you need to debug stack issues
 
 +++
 
-Note that the AMI to launch is configured in ecs-cluster.yaml, you might want to keep this updated or even better invoke a Lambda function to populate it in real-time during stack creation
+* Note that the AMI to launch is configured in ecs-cluster.yaml, you might want to keep this updated or even better invoke a Lambda function to populate it in real-time during stack creation
 
 +++
 
-Make your instance types a parameter and potentially set them differently between dev, test, prod environments
+* Make your instance types a parameter and potentially set them differently between dev, test, prod environments
 
 ---
 
