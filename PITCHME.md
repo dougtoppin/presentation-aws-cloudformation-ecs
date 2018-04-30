@@ -26,13 +26,14 @@ dougtoppin@gmail.com
 "AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. CloudFormation allows you to use a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts. This file serves as the single source of truth for your cloud environment. "
 
 ---
-### Why use it
+### Why use CloudFormation
 
 Staying within the AWS ecosystem has advantages
 
 * IAM
 * logging
 * cli
+* SDK
 * admin console
 
 +++
@@ -67,11 +68,11 @@ Don't pay for idle, delete an environment when you are not using it
 
 +++
 
-Easily create dev, qa, CICD and production environments in parallel using the same templates
+Easily and reliably create dev, qa, CICD and production environments in parallel using the same templates
 
 +++
 
-Namespace based environment means that multiple environments can coexist without stepping on each other
+Namespace based environment (stack names) means that multiple environments can coexist without stepping on each other
 
 +++
 
@@ -134,7 +135,7 @@ Good example of reusable stack layers
 
 +++
 
-Don't forget necessary roles for automation tools
+Don't forget necessary roles for automation tools such as Lambda functions
 
 ![complete stack](assets/aws-role-01.png)
 
@@ -157,7 +158,7 @@ Don't get in the habit of creating things using the admin console or even the cl
 
 +++
 
-Script in Lambda which makes moving to Step easier than if you use /bin/sh
+Script in Lambda which makes moving to Step Functions easier than if you use /bin/sh
 
 +++
 
