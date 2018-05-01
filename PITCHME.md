@@ -89,8 +89,10 @@ Ease of environment creation facilitates things like automated regression testin
 
 [github.com/awslabs/ecs-refarch-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)
 
-* Excellent example of nested stacks and application stacks
+* Excellent example of nested and application stacks
+* ECS EC2 based cluster
 * master, VPC, security groups, ALB, ECS instances, products service, website service
+* Configures SSM Run Command instead of a bastion host, cheaper and improved security
 
 +++
 
@@ -140,15 +142,6 @@ Don't forget necessary roles for automation tools such as Lambda functions
 
 ![complete stack](assets/aws-role-01.png)
 
-+++
-
-Examples of stacks that provide a complete system
-
-* base cluster
-* resources such as RDS
-* application services
-* SNS items
-
 ---
 
 ### Lessons learned
@@ -158,7 +151,7 @@ Examples of stacks that provide a complete system
 
 +++
 
-* Script in Lambda which makes moving to Step Functions easier than if you use /bin/sh
+* Even better, script in Lambda which makes moving to Step Functions easier than if you use /bin/sh
 
 +++
 
@@ -167,8 +160,8 @@ Examples of stacks that provide a complete system
 +++
 
 * Don't hardcode stuff in your templates
-* use the SSM Parameter Store to centralize settings
-* pass parameters between templates
+* Use the SSM Parameter Store to centralize settings
+* Pass parameters between templates
 
 +++
 
@@ -176,7 +169,7 @@ Examples of stacks that provide a complete system
 
 +++
 
-* When creating resources with names/keys concatenate the environment name to prevent conflicts if there is any chance that multiple instances of a stack might exist
+* When creating resources with names/keys prefix the environment name to prevent conflicts if there is any chance that multiple instances of a stack might exist
 
 +++
 
@@ -184,7 +177,7 @@ Examples of stacks that provide a complete system
 
 +++
 
-* Start with an existing set of templates rather than create your own from scratch
+* Start with an existing set of templates rather than creating your own from scratch
 
 +++
 
@@ -192,11 +185,11 @@ Examples of stacks that provide a complete system
 
 +++
 
-* To prevent race conditions between stacks use Ouputs/export and ImportValue, this will cause a dependency/wait to occur. This also helps in creating a stack that needs something to exist but the "base" stack was never created.
+* To prevent race conditions between stacks use CloudFormation ouputs/export and ImportValue, this will cause a dependency/wait to occur. This also helps in creating a stack that needs something to exist but the "base" stack was never created.
 
 +++
 
-* Stacks can take a while to complete, particularly if there are numerous dependencies, use `wait` to allow creations to occur in parallel and save time
+* Stack creates can take a while to complete, particularly if there are numerous dependencies, use `wait` to allow creations to occur in parallel and save time
 
 +++
 
@@ -215,7 +208,8 @@ Examples of stacks that provide a complete system
 * Instead of deleting and recreating an application stack you might be able to just force a redeploy of a container which will pull a new image which saves time when testing
 
 ```
-aws ecs update-service --cluster xxx --service yyy --force-new-deployment
+aws ecs update-service --cluster xxx --service yyy \
+    --force-new-deployment
 ```
 
 +++
@@ -224,7 +218,7 @@ aws ecs update-service --cluster xxx --service yyy --force-new-deployment
 
 +++
 
-* Note that account limits might cause a create to fail, monitor your limits usage and settings
+* Note that account limits might cause a create to fail, monitor your limits usage and settings before you have a create fail at an inconvenient time
 
 +++
 
